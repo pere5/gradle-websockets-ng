@@ -15,7 +15,7 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(value = "greeting.json", method = RequestMethod.GET)
-    public @ResponseBody Greeting greetingJSON(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
+    public @ResponseBody Greeting greetingJSON(@RequestParam(value="name", required=false, defaultValue="World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
