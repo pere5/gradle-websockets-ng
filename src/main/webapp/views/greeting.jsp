@@ -2,9 +2,7 @@
 <head>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
     <script src="js/controller.js"></script>
-    <script src="js/test/controllerSpec.js"></script>
 </head>
 <body ng-controller="PhoneListCtrl">
     <h2 ng-click="phones[0].name = 'Per'">Hi ${name}!</h2>
