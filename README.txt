@@ -1,5 +1,15 @@
-== install and run instructions ==
+====Install and run instructions====
+
+==Building java==
 
 brew install gradle
 gradle clean build
 java -jar build/libs/com.endian.openapi-0.1.0.jar
+
+==Javascript dependencies==
+
+brew install node
+npm install -g bower
+cd src/main/webapp
+bower install bootstrap
+bower install angular#1.3.0-beta.8
