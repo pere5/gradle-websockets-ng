@@ -1,31 +1,21 @@
 package org.flowerbed.repository.plants;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 public class Flower {
 
+    private int id;
+    private boolean empty = false;
     private String name;
     private String family;
     private String planted;
-    private int age;
+    private int age = 0;
     private int maxAge;
-    private int height;
+    private int height = 0;
     private int maxHeight;
 
-    public Flower() {
-
-        DateTime dateTime = new DateTime();
-
-        this.age = 0;
-        this.height = 0;
-        this.planted = dateTime.toString();
-
-        this.name = "Rose";
-        this.family = "Adelanthaceae";
-        this.maxAge = 100;
-        this.maxHeight = 100;
+    public Flower(boolean empty) {
+        this.empty = empty;
     }
 
     public Flower(String name,
@@ -34,9 +24,6 @@ public class Flower {
                   int maxHeight) {
 
         DateTime dateTime = new DateTime();
-
-        this.age = 0;
-        this.height = 0;
         this.planted = dateTime.toString();
 
         this.name = name;
@@ -102,12 +89,30 @@ public class Flower {
         this.maxAge = maxAge;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    public void setEmpty(boolean empty) {
+        this.empty = empty;
+    }
+
     @Override
     public String toString() {
         return "Flower{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", empty=" + empty +
+                ", name='" + name + '\'' +
                 ", family='" + family + '\'' +
-                ", planted=" + planted +
+                ", planted='" + planted + '\'' +
                 ", age=" + age +
                 ", maxAge=" + maxAge +
                 ", height=" + height +

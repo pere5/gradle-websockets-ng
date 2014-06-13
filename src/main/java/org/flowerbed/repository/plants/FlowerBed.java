@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface FlowerBed {
 
-    List<Flower> getFlowerBed();
+    List<List<Flower>> getFlowerBed();
 
-    void plantFlower(Flower flower);
+    void plant(Flower flower, int x, int y);
 
 }
