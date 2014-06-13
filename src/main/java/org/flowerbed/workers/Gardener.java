@@ -46,7 +46,7 @@ public class Gardener {
         for (List<Flower> flowerList: flowerBed.getFlowerBed()) {
             for (Flower flower: flowerList) {
                 flower.setAge(flower.getAge() + 1);
-                flower.setHeight(flower.getAge() + 1);
+                flower.setHeight(flower.getHeight() + 1);
             }
         }
     }
