@@ -1,6 +1,7 @@
 <html lang="en" ng-app="flowerApp">
 <head>
-    <link rel="stylesheet" href="../library/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/library/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/flowerBed.css">
     <script src="/library/bower_components/angular/angular.js"></script>
     <script src="/library/bower_components/sockjs/sockjs.js"></script>
     <script src="/library/bower_components/stomp-websocket/lib/stomp.js"></script>
@@ -9,19 +10,10 @@
     <script src="/javascripts/socketIO.js"></script>
     <script src="/javascripts/flowerbedController.js"></script>
 </head>
-<body ng-controller="flowerbedController">
-    <h2 ng-click="phones[0].name = 'Per'">${name}</h2>
-
-    <ul>
-        <li ng-repeat="phone in phones">
-            {{phone.name}}
-            <p>{{phone.snippet}}</p>
-        </li>
-    </ul>
-    1 + 2 = {{1 + 2}}
-
-    <div ng-repeat="flowerBed in socket.flowerBed">
-        {{flowerBed.name}}
+<body class="bodyBackground" ng-controller="flowerbedController">
+    <div class="textColor" ng-repeat="flower in socket.flowerBed">
+        <div class="textSizeMedium">Name: {{flower.name}}, Family: {{flower.family}}</div>
+        <div class="textSizeSmall">Planted: {{flower.planted}} Age:{{flower.age}} Max age: {{flower.maxAge}} Height: {{flower.height}} Max height: {{flower.maxHeight}}</div>
     </div>
 </body>
 </html>

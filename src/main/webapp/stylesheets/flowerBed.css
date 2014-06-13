@@ -1,0 +1,72 @@
+/* clearfix */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.masonry:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.masonry .item {
+    float: left;
+}
+
+.bodyBackground {
+    background: #1F1F1F;
+}
+
+.marginTop {
+    margin-top: 35px;
+}
+
+.marginBottom {
+    margin-bottom: 35px;
+}
+
+.marginTopSmall {
+    margin-top: 20px;
+}
+
+.iconSizeMenu {
+    font-size: 80px;
+}
+
+.iconSizeLarge {
+    font-size: 80px;
+}
+
+.iconSizeVeryLarge {
+    font-size: 150px;
+}
+
+.textColor {
+    color: lightgray;
+}
+
+.textSizeLarge {
+    font-size: 48px;
+}
+
+.textSizeMedium {
+    font-size: 33px;
+}
+
+.textSizeSmall {
+    font-size: 18px;
+}
+
+.menuColor {
+    color: #7FAD79;
+}
+
+.flowerColor {
+    color: red;
+}
+
+.purgeWeedColor {
+    color: lightcyan;
+}

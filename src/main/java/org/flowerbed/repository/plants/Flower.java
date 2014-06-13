@@ -1,23 +1,28 @@
 package org.flowerbed.repository.plants;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 public class Flower {
 
     private String name;
     private String family;
-    private DateTime planted;
+    private String planted;
     private int age;
     private int maxAge;
     private int height;
     private int maxHeight;
 
     public Flower() {
+
+        DateTime dateTime = new DateTime();
+
         this.age = 0;
         this.height = 0;
-        this.planted = new DateTime();
+        this.planted = dateTime.toString();
 
-        this.name = "very pretty flower";
+        this.name = "Rose";
         this.family = "Adelanthaceae";
         this.maxAge = 100;
         this.maxHeight = 100;
@@ -27,9 +32,12 @@ public class Flower {
                   String family,
                   int maxAge,
                   int maxHeight) {
+
+        DateTime dateTime = new DateTime();
+
         this.age = 0;
         this.height = 0;
-        this.planted = new DateTime();
+        this.planted = dateTime.toString();
 
         this.name = name;
         this.family = family;
@@ -54,11 +62,11 @@ public class Flower {
         this.family = family;
     }
 
-    public DateTime getPlanted() {
+    public String getPlanted() {
         return planted;
     }
 
-    public void setPlanted(DateTime planted) {
+    public void setPlanted(String planted) {
         this.planted = planted;
     }
 
