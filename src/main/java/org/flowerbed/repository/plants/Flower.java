@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 public class Flower {
 
     private int id;
-    private boolean empty = false;
+    private boolean empty;
     private String name;
     private String family;
     private String planted;
@@ -13,6 +13,10 @@ public class Flower {
     private int maxAge;
     private int height = 0;
     private int maxHeight;
+
+    public Flower() {
+        this.empty = false;
+    }
 
     public Flower(boolean empty) {
         this.empty = empty;

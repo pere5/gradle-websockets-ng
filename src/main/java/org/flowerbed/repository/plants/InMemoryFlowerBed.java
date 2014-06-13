@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class InMemoryFlowerBed implements FlowerBed {
 
-    private final List<List<Flower>> flowerBed = new ArrayList<List<Flower>>();
+    private final List<List<Flower>> flowerBed = new ArrayList<>();
     private final AtomicInteger atomicInteger = new AtomicInteger();
 
     public InMemoryFlowerBed() {
