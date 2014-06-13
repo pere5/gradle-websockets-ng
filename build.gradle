@@ -1,10 +1,12 @@
 buildscript {
     repositories {
         maven { url "http://repo.spring.io/libs-snapshot" }
+        maven { url "http://repo.spring.io/release" }
         mavenLocal()
+        mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.0.RELEASE")
     }
 }
 
@@ -12,21 +14,27 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
-jar {
-    baseName = 'com.endian.openapi'
-    version =  '0.1.0'
+war {
+    baseName = 'org.flowerbed'
+    version =  '1.0.0'
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    maven { url "http://repo.spring.io/release" }
     maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework:spring-messaging")
     compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+    compile("joda-time:joda-time:2.3")
     testCompile("junit:junit")
 }
 

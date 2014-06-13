@@ -2,9 +2,9 @@
  * Created by pere5 on 22/05/14.
  */
 
-var phonecatApp = angular.module('phonecatApp', []);
 
-phonecatApp.controller('PhoneListCtrl', function ($scope) {
+controllers.controller('flowerbedController', ['$scope', function ($scope) {
+
     $scope.phones = [
         {'name': 'Nexus S',
             'snippet': 'Fast just got faster with Nexus S.'},
@@ -15,4 +15,4 @@ phonecatApp.controller('PhoneListCtrl', function ($scope) {
     ];
 
 
-});
+}]);

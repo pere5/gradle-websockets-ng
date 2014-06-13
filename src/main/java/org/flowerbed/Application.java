@@ -1,4 +1,4 @@
-package openapi;
+package org.flowerbed;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.SpringApplication;
@@ -20,22 +20,14 @@ public class Application {
     private static Logger logger = Logger.getLogger(Application.class);
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+        ApplicationContext springApplicationContext = SpringApplication.run(Application.class, args);
 
-        logger.info("Let's inspect the beans provided by Spring Boot:");
+        logger.info("Spring beans provided by Spring Boot:");
 
-        String[] beanNames = ctx.getBeanDefinitionNames();
+        String[] beanNames = springApplicationContext.getBeanDefinitionNames();
         Arrays.sort(beanNames);
         for (String beanName : beanNames) {
             logger.info(beanName);
         }
     }
-
-    @Bean
-    public ViewResolver getViewResolver(){
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/views/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-   }
 }

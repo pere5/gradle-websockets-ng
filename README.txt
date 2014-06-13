@@ -4,7 +4,7 @@
 
 brew install gradle
 gradle clean build
-java -jar build/libs/com.endian.openapi-0.1.0.jar
+java -jar build/libs/com.endian.org.flowerbed-0.1.0.jar
 
 ==Javascript dependencies==
 
