@@ -35,7 +35,7 @@ public class Gardener {
     @Scheduled(fixedRate = 5000)
     public void worker() {
         if (first) {
-            plantFirstFolwers();
+            plantFirstFlowers();
             first = false;
         }
         logic();
@@ -55,7 +55,7 @@ public class Gardener {
         }
     }
 
-    private void plantFirstFolwers() {
+    private void plantFirstFlowers() {
         flowerBed.plant(new Flower("Planticus", "Apocynaceae", 50, 130), 0, 0);
         flowerBed.plant(new Flower("Floweriam", "Hydrophyllaceae", 110, 45), 0, 1);
         flowerBed.plant(new Flower("Growadomus", "Plumbaginaceae", 75, 95), 1, 0);
