@@ -2,10 +2,10 @@ package org.flowerbed.repository.plants;
 
 import org.joda.time.DateTime;
 
-public class Flower {
+public class Flower implements Spot {
 
     private int id;
-    private boolean empty;
+    private boolean empty = false;
     private String name;
     private String family;
     private String planted;
@@ -15,11 +15,8 @@ public class Flower {
     private int maxHeight;
 
     public Flower() {
-        this.empty = false;
-    }
-
-    public Flower(boolean empty) {
-        this.empty = empty;
+        DateTime dateTime = new DateTime();
+        this.planted = dateTime.toString();
     }
 
     public Flower(String name,

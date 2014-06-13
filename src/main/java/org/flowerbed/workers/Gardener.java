@@ -9,6 +9,7 @@ import java.util.List;
 import org.flowerbed.repository.plants.Flower;
 import org.flowerbed.repository.plants.FlowerBed;
 import org.apache.log4j.Logger;
+import org.flowerbed.repository.plants.Spot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -43,10 +44,13 @@ public class Gardener {
 
     private void logic() {
         logger.info("Tending to flowers.");
-        for (List<Flower> flowerList: flowerBed.getFlowerBed()) {
-            for (Flower flower: flowerList) {
-                flower.setAge(flower.getAge() + 1);
-                flower.setHeight(flower.getHeight() + 1);
+        for (List<Spot> flowerList: flowerBed.getFlowerBed()) {
+            for (Spot spot: flowerList) {
+                if (spot instanceof Flower) {
+                    Flower flower = (Flower) spot;
+                    flower.setAge(flower.getAge() + 1);
+                    flower.setHeight(flower.getHeight() + 1);
+                }
             }
         }
     }
@@ -61,7 +65,7 @@ public class Gardener {
         socket.convertAndSend("/topic/flowerbed", convertToJSON(flowerBed.getFlowerBed()));
     }
 
-    public @ResponseBody List<List<Flower>> convertToJSON(List<List<Flower>> flowerList) {
+    public @ResponseBody List<List<Spot>> convertToJSON(List<List<Spot>> flowerList) {
         return flowerList;
     }
 }

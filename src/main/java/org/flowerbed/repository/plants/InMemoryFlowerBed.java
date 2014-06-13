@@ -5,7 +5,6 @@ package org.flowerbed.repository.plants;
  */
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Repository;
@@ -13,21 +12,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class InMemoryFlowerBed implements FlowerBed {
 
-    private final List<List<Flower>> flowerBed = new ArrayList<>();
+    private final List<List<Spot>> flowerBed = new ArrayList<>();
     private final AtomicInteger atomicInteger = new AtomicInteger();
 
     public InMemoryFlowerBed() {
         boolean empty = true;
         for (int i = 0; i < 10; i++) {
-            List<Flower> flowerRow = new ArrayList<>();
+            List<Spot> spotRow = new ArrayList<>();
             for (int j = 0; j < 10; j++) {
-                flowerRow.add(new Flower(empty));
+                spotRow.add(new EmptySpot());
             }
-            flowerBed.add(flowerRow);
+            flowerBed.add(spotRow);
         }
     }
 
-    public List<List<Flower>> getFlowerBed() {
+    public List<List<Spot>> getFlowerBed() {
         return this.flowerBed;
     }
 
