@@ -14,10 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
+@Component
 @EnableScheduling
 public class ScheduledWorker {
 
@@ -34,16 +35,28 @@ public class ScheduledWorker {
 
     @Scheduled(fixedRate = 5000)
     public void worker() {
-        if (flowerBed.getFlowerBed().isEmpty()) {
-            flowerBed.plantFlower(new Flower("Planticus", "Apocynaceae", 50, 130));
-            flowerBed.plantFlower(new Flower("Floweriam", "Hydrophyllaceae", 110, 45));
-            flowerBed.plantFlower(new Flower("Growadomus", "Plumbaginaceae", 75, 95));
-        }
+        setDefault();
+        logic();
+        pushToClient();
+    }
+
+    private void logic() {
         for (Flower flower: flowerBed.getFlowerBed()) {
             flower.setAge(flower.getAge() + 1);
             flower.setHeight(flower.getAge() + 1);
             logger.info("Updating model: " + flower);
         }
+    }
+
+    private void setDefault() {
+        if (flowerBed.getFlowerBed().isEmpty()) {
+            flowerBed.plantFlower(new Flower("Planticus", "Apocynaceae", 50, 130));
+            flowerBed.plantFlower(new Flower("Floweriam", "Hydrophyllaceae", 110, 45));
+            flowerBed.plantFlower(new Flower("Growadomus", "Plumbaginaceae", 75, 95));
+        }
+    }
+
+    private void pushToClient() {
         template.convertAndSend("/topic/flowerbed", convertToJSON(flowerBed.getFlowerBed()));
     }
 
