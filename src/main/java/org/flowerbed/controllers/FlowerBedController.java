@@ -1,10 +1,12 @@
 package org.flowerbed.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.flowerbed.repository.plants.Flower;
+import org.flowerbed.repository.plants.Spot;
 import org.flowerbed.workers.Gardener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,18 +26,20 @@ public class FlowerBedController {
     }
 
     @RequestMapping(value = "plantflower", method = RequestMethod.POST)
-    public @ResponseBody void plantFlower(@RequestBody(required=true) Flower flower,
+    public @ResponseBody List<List<Spot>> plantFlower(@RequestBody(required=true) Flower flower,
                                           @RequestParam(required=true) int x,
                                           @RequestParam(required=true) int y) {
         gardener.plant(flower, x, y);
         logger.info(flower + " x: " + Integer.toString(x) + " y: " + Integer.toString(y));
+        return gardener.getFlowerBed();
     }
 
     @RequestMapping(value = "weedflower", method = RequestMethod.POST)
-    public @ResponseBody void weedFlower(@RequestParam(required=true) int x,
+    public @ResponseBody List<List<Spot>> weedFlower(@RequestParam(required=true) int x,
                                          @RequestParam(required=true) int y) {
         gardener.weed(x, y);
         logger.info(" x: " + Integer.toString(x) + " y: " + Integer.toString(y) + "got weeded.");
+        return gardener.getFlowerBed();
     }
 
     @RequestMapping(value = "flowerbed.html", method = RequestMethod.GET)

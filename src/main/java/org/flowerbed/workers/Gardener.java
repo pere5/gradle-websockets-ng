@@ -80,4 +80,8 @@ public class Gardener {
     public @ResponseBody List<List<Spot>> convertToJSON(List<List<Spot>> flowerList) {
         return flowerList;
     }
+
+    public List<List<Spot>> getFlowerBed() {
+        return flowerBed.getFlowerBed();
+    }
 }

@@ -19,8 +19,9 @@ controllers.controller('flowerbedController', ['$scope', '$http', function ($sco
                 maxHeight: 300
             }
         }).success(
-            function() {
+            function(flowerBed) {
                 console.log('Flower planted.');
+                $scope.socket.flowerBed = flowerBed;
             }
         );
     }
