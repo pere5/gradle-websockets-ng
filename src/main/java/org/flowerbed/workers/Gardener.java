@@ -5,7 +5,9 @@ package org.flowerbed.workers;
  */
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import org.flowerbed.repository.plants.EmptySpot;
 import org.flowerbed.repository.plants.Flower;
 import org.flowerbed.repository.plants.FlowerBed;
 import org.apache.log4j.Logger;
@@ -25,6 +27,7 @@ public class Gardener {
     private final FlowerBed flowerBed;
     private SimpMessagingTemplate socket;
     private boolean first = true;
+    private final AtomicInteger atomicInteger = new AtomicInteger();
 
     @Autowired
     public Gardener(FlowerBed flowerBed, SimpMessagingTemplate socket) {
@@ -38,27 +41,36 @@ public class Gardener {
             plantFirstFlowers();
             first = false;
         }
-        logic();
+        garden();
         pushToClient();
     }
 
-    private void logic() {
-        logger.info("Tending to flowers.");
+    private void garden() {
+        int noFlowers = 0;
         for (List<Spot> flowerList: flowerBed.getFlowerBed()) {
             for (Spot spot: flowerList) {
                 if (spot instanceof Flower) {
-                    Flower flower = (Flower) spot;
-                    flower.setAge(flower.getAge() + 1);
-                    flower.setHeight(flower.getHeight() + 1);
+                    noFlowers++;
                 }
             }
         }
+        logger.info("Gardener is working. Nr plants in garden: " + noFlowers);
+    }
+
+    public void plant(Flower flower, int x, int y) {
+        int id = atomicInteger.incrementAndGet();
+        flower.setId(id);
+        this.flowerBed.getFlowerBed().get(x).set(y, flower);
+    }
+
+    public void weed(int x, int y) {
+        this.flowerBed.getFlowerBed().get(x).set(y, new EmptySpot());
     }
 
     private void plantFirstFlowers() {
-        flowerBed.plant(new Flower("Planticus", "Apocynaceae", 50, 130), 0, 0);
-        flowerBed.plant(new Flower("Floweriam", "Hydrophyllaceae", 110, 45), 0, 1);
-        flowerBed.plant(new Flower("Growadomus", "Plumbaginaceae", 75, 95), 1, 0);
+        plant(new Flower("Planticus", "Apocynaceae", 50, 130), 0, 0);
+        plant(new Flower("Floweriam", "Hydrophyllaceae", 110, 45), 0, 1);
+        plant(new Flower("Growadomus", "Plumbaginaceae", 75, 95), 1, 0);
     }
 
     private void pushToClient() {

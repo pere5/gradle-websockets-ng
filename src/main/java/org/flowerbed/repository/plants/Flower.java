@@ -1,11 +1,13 @@
 package org.flowerbed.repository.plants;
 
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 public class Flower implements Spot {
 
     private int id;
     private boolean empty = false;
+    private boolean withered = false;
     private String name;
     private String family;
     private String planted;
@@ -106,6 +108,14 @@ public class Flower implements Spot {
         this.empty = empty;
     }
 
+    public boolean isWithered() {
+        return withered;
+    }
+
+    public void setWithered(boolean withered) {
+        this.withered = withered;
+    }
+
     @Override
     public String toString() {
         return "Flower{" +
@@ -118,6 +128,7 @@ public class Flower implements Spot {
                 ", maxAge=" + maxAge +
                 ", height=" + height +
                 ", maxHeight=" + maxHeight +
+                ", withered=" + withered +
                 '}';
     }
 }

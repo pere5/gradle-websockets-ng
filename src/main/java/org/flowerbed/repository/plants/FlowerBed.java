@@ -9,7 +9,4 @@ import java.util.List;
 public interface FlowerBed {
 
     List<List<Spot>> getFlowerBed();
-
-    void plant(Flower flower, int x, int y);
-
 }
