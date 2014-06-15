@@ -3,7 +3,11 @@
  */
 
 
-controllers.controller('flowerbedController', ['$scope', '$http', function ($scope, $http) {
+controllers.controller('flowerbedController', ['$scope', '$http', 'SocketService', function ($scope, $http, SocketService) {
+    $scope.socket = {};
+    $scope.socket.flowerBed = [[{name: 'hej', empty: false}]];
+    SocketService.connectTo('/topic/flowerbed', $scope);
+
     $scope.plantFlower = function () {
         $http({
             method: "post",

@@ -7,7 +7,7 @@
     <script src="/library/bower_components/stomp-websocket/lib/stomp.js"></script>
 
     <script src="/javascripts/app.js"></script>
-    <script src="/javascripts/socketIO.js"></script>
+    <script src="/javascripts/SocketService.js"></script>
     <script src="/javascripts/flowerbedController.js"></script>
 </head>
 <body class="bodyBackground" ng-controller="flowerbedController">
