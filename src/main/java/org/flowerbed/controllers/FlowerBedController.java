@@ -24,13 +24,16 @@ public class FlowerBedController {
     }
 
     @RequestMapping(value = "plantflower", method = RequestMethod.POST)
-    public @ResponseBody void plantFlower(@RequestBody(required=true) Flower flower, int x, int y) {
+    public @ResponseBody void plantFlower(@RequestBody(required=true) Flower flower,
+                                          @RequestParam(required=true) int x,
+                                          @RequestParam(required=true) int y) {
         gardener.plant(flower, x, y);
         logger.info(flower + " x: " + Integer.toString(x) + " y: " + Integer.toString(y));
     }
 
     @RequestMapping(value = "weedflower", method = RequestMethod.POST)
-    public @ResponseBody void weedFlower(int x, int y) {
+    public @ResponseBody void weedFlower(@RequestParam(required=true) int x,
+                                         @RequestParam(required=true) int y) {
         gardener.weed(x, y);
         logger.info(" x: " + Integer.toString(x) + " y: " + Integer.toString(y) + "got weeded.");
     }
