@@ -17,6 +17,10 @@
             <div class="textSizeSmall">Planted: {{flower.planted}} Age:{{flower.age}} Max age: {{flower.maxAge}} Height: {{flower.height}} Max height: {{flower.maxHeight}}</div>
         </div>
     </div>
-    <button ng-click="plantFlower()">plant</button>
+    <button ng-click="plantFlowerAnywhere()">plant anywhere</button>
+    <button ng-click="weedFlowerAnywhere()">weed anywhere</button>
+    <button ng-click="plantFlower()">plant on 1, 1</button>
+    <button ng-click="weedFlower()">weed on 1, 1</button>
+
 </body>
 </html>

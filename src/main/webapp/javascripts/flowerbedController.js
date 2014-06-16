@@ -11,10 +11,10 @@ controllers.controller('flowerbedController', ['$scope', '$http', 'SocketService
     $scope.plantFlower = function () {
         $http({
             method: "post",
-            url: "plantflower",
+            url: "plantFlower",
             params: {
                 x: 1,
-                y: 2
+                y: 1
             },
             data: {
                 name: 'Per',
@@ -28,5 +28,51 @@ controllers.controller('flowerbedController', ['$scope', '$http', 'SocketService
                 $scope.socket.flowerBed = flowerBed;
             }
         );
-    }
+    };
+
+    $scope.plantFlowerAnywhere = function () {
+        $http({
+            method: "post",
+            url: "plantFlowerAnywhere",
+            data: {
+                name: 'Per',
+                family: 'Eriksson',
+                maxAge: 200,
+                maxHeight: 300
+            }
+        }).success(
+            function(flowerBed) {
+                console.log('Flower planted.');
+                $scope.socket.flowerBed = flowerBed;
+            }
+        );
+    };
+
+    $scope.weedFlower = function () {
+        $http({
+            method: "post",
+            url: "weedFlower",
+            params: {
+                x: 1,
+                y: 1
+            }
+        }).success(
+            function(flowerBed) {
+                console.log('Flower weeded.');
+                $scope.socket.flowerBed = flowerBed;
+            }
+        );
+    };
+
+    $scope.weedFlowerAnywhere = function () {
+        $http({
+            method: "post",
+            url: "weedFlowerAnywhere"
+        }).success(
+            function(flowerBed) {
+                console.log('Flower weeded.');
+                $scope.socket.flowerBed = flowerBed;
+            }
+        );
+    };
 }]);

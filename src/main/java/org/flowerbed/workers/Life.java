@@ -21,10 +21,12 @@ public class Life {
 
     private static Logger logger = Logger.getLogger(Life.class);
     private final FlowerBed flowerBed;
+    private final CommonSense commonSense;
 
     @Autowired
-    public Life(FlowerBed flowerBed) {
+    public Life(FlowerBed flowerBed, CommonSense commonSense) {
         this.flowerBed = flowerBed;
+        this.commonSense = commonSense;
     }
 
     @Scheduled(fixedRate = 5000)
@@ -56,7 +58,7 @@ public class Life {
                 int neighborY = y + j;
                 if (withinFlowerBed(neighborX, neighborY)
                         && notThisSpot(neighborX, neighborY, x, y)
-                        && notOnOtherPlant(neighborX, neighborY)) {
+                        && commonSense.notOnOtherPlant(neighborX, neighborY)) {
                     perhapsSpread(flower, neighborX, neighborY);
                 }
             }
@@ -66,8 +68,9 @@ public class Life {
     private void perhapsSpread(Flower flower, int neighborX, int neighborY) {
         int max = 100;
         int min = 0;
-        int percentage =  min + (int)(Math.random() * ((max - min) + 1));
-        if (percentage >= 101) {
+        int percentage = min + (int)(Math.random() * ((max - min) + 1));
+        //120% likelihood any plant will spawn a brood.
+        if (percentage >= 100 - ( Math.ceil(120 / flower.getMaxAge()) )) {
             logger.info("Life spawned a new flower.");
             Flower newFlower = spawnNewFlower(flower);
             this.flowerBed.getFlowerBed().get(neighborX).set(neighborY, newFlower);
@@ -76,11 +79,6 @@ public class Life {
 
     private Flower spawnNewFlower(Flower flower) {
         return new Flower(flower.getName(), flower.getFamily(), flower.getMaxAge(), flower.getMaxHeight());
-    }
-
-    private boolean notOnOtherPlant(int neighborX, int neighborY) {
-        Spot spot = this.flowerBed.getFlowerBed().get(neighborX).get(neighborY);
-        return spot instanceof EmptySpot;
     }
 
     private boolean notThisSpot(int neighborX, int neighborY, int x, int y) {
@@ -92,7 +90,7 @@ public class Life {
     }
 
     private void grow(Flower flower) {
-        if (flower.getAge() > flower.getMaxAge()) {
+        if (flower.getAge() < flower.getMaxAge()) {
             flower.setAge(flower.getAge() + 1);
         } else {
             flower.setWithered(true);

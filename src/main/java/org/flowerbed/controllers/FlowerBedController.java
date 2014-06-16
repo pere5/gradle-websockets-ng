@@ -25,16 +25,30 @@ public class FlowerBedController {
         this.gardener = gardener;
     }
 
-    @RequestMapping(value = "plantflower", method = RequestMethod.POST)
+    @RequestMapping(value = "plantFlower", method = RequestMethod.POST)
     public @ResponseBody List<List<Spot>> plantFlower(@RequestBody(required=true) Flower flower,
-                                          @RequestParam(required=true) int x,
-                                          @RequestParam(required=true) int y) {
+                                                      @RequestParam(required=true) int x,
+                                                      @RequestParam(required=true) int y) {
         gardener.plant(flower, x, y);
-        logger.info(flower + " x: " + Integer.toString(x) + " y: " + Integer.toString(y));
+        logger.info("Planting flower: " + flower + " x: " + Integer.toString(x) + " y: " + Integer.toString(y));
         return gardener.getFlowerBed();
     }
 
-    @RequestMapping(value = "weedflower", method = RequestMethod.POST)
+    @RequestMapping(value = "plantFlowerAnywhere", method = RequestMethod.POST)
+    public @ResponseBody List<List<Spot>> plantFlowerAnywhere(@RequestBody(required=true) Flower flower) {
+        gardener.plantAnywhere(flower);
+        logger.info("Planting flower: " + flower);
+        return gardener.getFlowerBed();
+    }
+
+    @RequestMapping(value = "weedFlowerAnywhere", method = RequestMethod.POST)
+    public @ResponseBody List<List<Spot>> weedFlowerAnywhere() {
+        gardener.weedFlowerAnywhere();
+        logger.info("A flower got weeded.");
+        return gardener.getFlowerBed();
+    }
+
+    @RequestMapping(value = "weedFlower", method = RequestMethod.POST)
     public @ResponseBody List<List<Spot>> weedFlower(@RequestParam(required=true) int x,
                                          @RequestParam(required=true) int y) {
         gardener.weed(x, y);
