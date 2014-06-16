@@ -68,9 +68,10 @@ public class Life {
     private void perhapsSpread(Flower flower, int neighborX, int neighborY) {
         int max = 100;
         int min = 0;
+        int target = 100 - (int)( Math.ceil(120 / flower.getMaxAge()) );
         int percentage = min + (int)(Math.random() * ((max - min) + 1));
-        //120% likelihood any plant will spawn a brood.
-        if (percentage >= 100 - ( Math.ceil(120 / flower.getMaxAge()) )) {
+        //~120% likelihood any plant will spawn a brood.
+        if (percentage >= target) {
             logger.info("Life spawned a new flower.");
             Flower newFlower = spawnNewFlower(flower);
             this.flowerBed.getFlowerBed().get(neighborX).set(neighborY, newFlower);
