@@ -5,7 +5,6 @@ package org.flowerbed.workers;
  */
 
 import org.apache.log4j.Logger;
-import org.flowerbed.repository.plants.EmptySpot;
 import org.flowerbed.repository.plants.Flower;
 import org.flowerbed.repository.plants.FlowerBed;
 import org.flowerbed.repository.plants.Spot;
