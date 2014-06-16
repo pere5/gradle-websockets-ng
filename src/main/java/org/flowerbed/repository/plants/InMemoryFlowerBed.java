@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class InMemoryFlowerBed implements FlowerBed {
 
+    //We are not thread safe.
     private final List<List<Spot>> flowerBed = new ArrayList<>();
 
     public InMemoryFlowerBed() {

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class FlowerBedController {
 
@@ -26,7 +28,8 @@ public class FlowerBedController {
     }
 
     @RequestMapping(value = "plantFlower", method = RequestMethod.POST)
-    public @ResponseBody List<List<Spot>> plantFlower(@RequestBody(required=true) Flower flower,
+    public @ResponseBody List<List<Spot>> plantFlower(HttpSession session,
+                                                      @RequestBody(required=true) Flower flower,
                                                       @RequestParam(required=true) int x,
                                                       @RequestParam(required=true) int y) {
         gardener.plant(flower, x, y);
@@ -35,29 +38,33 @@ public class FlowerBedController {
     }
 
     @RequestMapping(value = "plantFlowerAnywhere", method = RequestMethod.POST)
-    public @ResponseBody List<List<Spot>> plantFlowerAnywhere(@RequestBody(required=true) Flower flower) {
+    public @ResponseBody List<List<Spot>> plantFlowerAnywhere(HttpSession session,
+                                                              @RequestBody(required=true) Flower flower) {
         gardener.plantAnywhere(flower);
         logger.info("Planting flower: " + flower);
         return gardener.getFlowerBed();
     }
 
     @RequestMapping(value = "weedFlowerAnywhere", method = RequestMethod.POST)
-    public @ResponseBody List<List<Spot>> weedFlowerAnywhere() {
+    public @ResponseBody List<List<Spot>> weedFlowerAnywhere(HttpSession session) {
         gardener.weedFlowerAnywhere();
         logger.info("A flower got weeded.");
         return gardener.getFlowerBed();
     }
 
     @RequestMapping(value = "weedFlower", method = RequestMethod.POST)
-    public @ResponseBody List<List<Spot>> weedFlower(@RequestParam(required=true) int x,
-                                         @RequestParam(required=true) int y) {
+    public @ResponseBody List<List<Spot>> weedFlower(HttpSession session,
+                                                     @RequestParam(required=true) int x,
+                                                     @RequestParam(required=true) int y) {
         gardener.weed(x, y);
         logger.info(" x: " + Integer.toString(x) + " y: " + Integer.toString(y) + "got weeded.");
         return gardener.getFlowerBed();
     }
 
     @RequestMapping(value = "flowerbed.html", method = RequestMethod.GET)
-    public String flowerbed(Model model, @RequestParam(value="name", required=false, defaultValue="Dood!") String name) {
+    public String flowerbed(HttpSession session,
+                            Model model,
+                            @RequestParam(value="name", required=false, defaultValue="Dood!") String name) {
         Map<String, Object> attributesMap = new HashMap<>();
         attributesMap.put("name", name);
         model.addAllAttributes(attributesMap);
