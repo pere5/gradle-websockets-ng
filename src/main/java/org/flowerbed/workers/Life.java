@@ -52,11 +52,13 @@ public class Life {
     }
 
     private void spread(Flower flower, int x, int y) {
+        //logger.info("name: " + flower.getName() + " x: " + x + " y: " + y);
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 int neighborX = x + i;
                 int neighborY = y + j;
-                if (withinFlowerBed(neighborX, neighborY)
+                if (!flower.isWithered()
+                        && withinFlowerBed(neighborX, neighborY)
                         && notThisSpot(neighborX, neighborY, x, y)
                         && commonSense.notOnOtherPlant(neighborX, neighborY)) {
                     perhapsSpread(flower, neighborX, neighborY);
@@ -68,9 +70,10 @@ public class Life {
     private void perhapsSpread(Flower flower, int neighborX, int neighborY) {
         int max = 100;
         int min = 0;
-        int target = 100 - (int)( Math.ceil(120 / flower.getMaxAge()) );
-        int percentage = min + (int)(Math.random() * ((max - min) + 1));
-        //~120% likelihood any plant will spawn a brood during lifetime.
+        double lifetimeLikelihood = 50.0; //likelihood a plant will spread to each empty neighbor during lifetime.
+        double target = 100 - ( lifetimeLikelihood / flower.getMaxAge() );
+        double percentage = min + (Math.random() * (max - min));
+        //logger.info("name: " + flower.getName() + " target: " + target + " percentage: " + percentage);
         if (percentage >= target) {
             logger.info("Life spawned a new flower.");
             Flower newFlower = spawnNewFlower(flower);
@@ -83,11 +86,11 @@ public class Life {
     }
 
     private boolean notThisSpot(int neighborX, int neighborY, int x, int y) {
-        return neighborX != x && neighborY != y;
+        return !(neighborX == x && neighborY == y);
     }
 
     private boolean withinFlowerBed(int neighborX, int neighborY) {
-        return neighborX > 0 && neighborX < 10 && neighborY > 0 && neighborY < 10;
+        return neighborX >= 0 && neighborX <= 9 && neighborY >= 0 && neighborY <= 9;
     }
 
     private void grow(Flower flower) {
