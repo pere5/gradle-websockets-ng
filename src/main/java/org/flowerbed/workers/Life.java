@@ -70,7 +70,7 @@ public class Life {
         int min = 0;
         int target = 100 - (int)( Math.ceil(120 / flower.getMaxAge()) );
         int percentage = min + (int)(Math.random() * ((max - min) + 1));
-        //~120% likelihood any plant will spawn a brood.
+        //~120% likelihood any plant will spawn a brood during lifetime.
         if (percentage >= target) {
             logger.info("Life spawned a new flower.");
             Flower newFlower = spawnNewFlower(flower);
