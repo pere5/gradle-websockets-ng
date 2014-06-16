@@ -6,7 +6,7 @@
     <script src="/library/bower_components/sockjs/sockjs.js"></script>
     <script src="/library/bower_components/stomp-websocket/lib/stomp.js"></script>
 
-    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/flowerApp.js"></script>
     <script src="/javascripts/SocketService.js"></script>
     <script src="/javascripts/flowerbedController.js"></script>
 </head>

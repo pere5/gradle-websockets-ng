@@ -1,5 +1,9 @@
 ====Install and run instructions====
 
+==Homebrew==
+
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+
 ==Building java==
 
 brew install gradle
