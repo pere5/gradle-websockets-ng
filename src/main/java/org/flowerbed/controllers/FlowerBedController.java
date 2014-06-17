@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.flowerbed.repository.example.StaticJSONExample;
 import org.flowerbed.repository.plants.Flower;
 import org.flowerbed.repository.plants.Spot;
 import org.flowerbed.workers.Gardener;
@@ -25,6 +26,12 @@ public class FlowerBedController {
     @Autowired
     public FlowerBedController(Gardener gardener) {
         this.gardener = gardener;
+    }
+
+    @RequestMapping(value = "someJSONData", method = RequestMethod.GET)
+    public @ResponseBody StaticJSONExample someData(HttpSession session) {
+        logger.info("Getting a static JSON");
+        return new StaticJSONExample();
     }
 
     @RequestMapping(value = "plantFlower", method = RequestMethod.POST)
