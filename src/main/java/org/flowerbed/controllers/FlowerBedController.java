@@ -64,7 +64,7 @@ public class FlowerBedController {
                                                      @RequestParam(required=true) int x,
                                                      @RequestParam(required=true) int y) {
         gardener.weed(x, y);
-        logger.info(" x: " + Integer.toString(x) + " y: " + Integer.toString(y) + "got weeded.");
+        logger.info(" x: " + Integer.toString(x) + " y: " + Integer.toString(y) + " got weeded.");
         return gardener.getFlowerBed();
     }
 
