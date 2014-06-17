@@ -1,5 +1,7 @@
 <html lang="en" ng-app="flowerApp">
 <head>
+    <meta charset="utf-8">
+    <title>Flower bed</title>
     <link rel="stylesheet" href="/library/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/stylesheets/flowerBed.css">
     <script src="/library/bower_components/angular/angular.js"></script>
