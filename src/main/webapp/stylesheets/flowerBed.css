@@ -15,6 +15,10 @@
     float: left;
 }
 
+.alignMiddle {
+    text-align: center
+}
+
 .bodyBackground {
     background: #1F1F1F;
 }
