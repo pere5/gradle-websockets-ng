@@ -22,10 +22,10 @@ public class StaticJSONExample {
         someDataList.add("useful");
         someDataList.add("object.");
         someDataMap.put(1, "I");
-        someDataMap.put(1, "am");
-        someDataMap.put(1, "full");
-        someDataMap.put(1, "of");
-        someDataMap.put(1, "properties.");
+        someDataMap.put(2, "am");
+        someDataMap.put(3, "full");
+        someDataMap.put(4, "of");
+        someDataMap.put(5, "properties.");
     }
 
     public Map<Integer, String> getSomeDataMap() {
