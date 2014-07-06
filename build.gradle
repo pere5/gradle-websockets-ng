@@ -28,6 +28,10 @@ repositories {
     maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
+configurations {
+    providedRuntime
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-web")
@@ -35,6 +39,7 @@ dependencies {
     compile("org.springframework:spring-messaging")
     compile("org.apache.tomcat.embed:tomcat-embed-jasper")
     compile("joda-time:joda-time:2.3")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testCompile("junit:junit")
 }
 

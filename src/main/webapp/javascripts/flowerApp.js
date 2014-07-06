@@ -12,7 +12,7 @@ var controllers = angular.module('controllers', []);
 flowerApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/flowerBed', {
-            templateUrl: '/views/nothing.html',
+            templateUrl: '/views/flowerBed.html',
             controller: 'flowerbedController'
         }).
         otherwise({
